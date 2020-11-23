@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Service worker</title>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/my-service-worker.js', { scope: '/' })
+                .then(function(reg) {
+                    console.log('success');
+                })
+                .catch(function(error) {
+                    // registration failed
+                    console.log('Registration failed with ' + error);
+                });
+            }
+            async function whatTheFetch(url) {
+                console.log("Fetching",url);
+                const result = await fetch(url);
+                document.getElementById('fetchResult').innerHTML = await result.text();
+            }
+        </script>
+    </head>
+    <body>
+        <h1>RE-discovering the service-worker</h1>
+        <p>Alright so. Let's try to play with te service worker, without any fancy framework,
+        let's do it raw, pure javascript and html.<br>
+        For this, we want to follow
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">Mozilla's documentation</a>.</p>
+        <p>Wait... I read the first part of the page and they have a
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers">step-by-step
+            guide, that's completely usual!</a></p>
+        <h2>Talking with the service worker</h2>
+        <p>We're going to use the following buttons to call a function which will fire a fetch call.
+        <button onclick="whatTheFetch('uhhh.html')">What the fetch</button><br>
+        <button onclick="whatTheFetch('sw/version')">Asking version to the SW</button>
+        </p>
+        <p>And here is the result:<br>
+            <div id="fetchResult"></div>
+        </p>
+    </body>
+</html>
