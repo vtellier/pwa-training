@@ -13,7 +13,7 @@ self.addEventListener('activate', e => {
 });
 self.addEventListener('fetch', e => {
     console.log('fetch', e);
-    let url = e.request.url;
+    const url = e.request.url;
     console.log(url);
     if(url == "http://127.0.0.1:8080/uhhh.html") {
         console.log('Hahaha i am maning in the middle');
