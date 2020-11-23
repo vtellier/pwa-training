@@ -1,3 +1,4 @@
+const version = "1.0.0";
 self.addEventListener('install', e => {
     console.log('install event:', e);
     // Here we should install all the elements we'll need to use the app offline.
@@ -20,8 +21,7 @@ self.addEventListener('fetch', e => {
     }
     else if(url == "http://127.0.0.1:8080/sw/version") {
         console.log('giving version of this SW');
-        const response = new Response();
-        response.body = "I am the version 1.0.0";
+        const response = new Response(version, { status: 200 });
         e.respondWith(response);
     }
     else
