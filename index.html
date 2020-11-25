@@ -19,6 +19,9 @@
                 const result = await fetch(url);
                 document.getElementById('fetchResult').innerHTML = await result.text();
             }
+            async function showOya() {
+                document.getElementById('fetchResult').innerHTML = '<img src="/img/oya.jpg" />';
+            }
         </script>
     </head>
     <body>
@@ -31,9 +34,11 @@
         <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers">step-by-step
             guide, that's completely usual!</a></p>
         <h2>Talking with the service worker</h2>
-        <p>We're going to use the following buttons to call a function which will fire a fetch call.
+        <p>We're going to use the following buttons to call a function which will fire a fetch call.<br>
         <button onclick="whatTheFetch('uhhh.html')">What the fetch</button><br>
-        <button onclick="whatTheFetch('sw/version')">Asking version to the SW</button>
+        <button onclick="whatTheFetch('sw/version')">Asking version to the SW</button><br>
+        <button onclick="whatTheFetch('sw/caches.keys')">Asking SW to execute CacheStorage.keys()</button><br>
+        <button onclick="whatTheFetch('oyas-button.html')">Get Øya's button</button>
         </p>
         <p>And here is the result:<br>
             <div id="fetchResult"></div>
