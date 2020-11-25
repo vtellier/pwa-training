@@ -2,8 +2,8 @@ const version = "1.1.0";
 const cacheKey = "pwa-training-cache-1.1.0";
 
 const toCache = [
-    "/img/punta-da-piedade.jpg",
-    "hello.txt"
+    "./img/punta-da-piedade.jpg",
+    "./hello.txt"
 ];
 
 self.addEventListener('install', e => {
@@ -22,16 +22,16 @@ self.addEventListener('fetch', e => {
     console.log('fetch', e);
     const url = e.request.url;
     console.log(url);
-    if(url == "http://127.0.0.1:8080/uhhh.html") {
+    if(url == "http://127.0.0.1:8080/fetch-n-cache/uhhh.html") {
         console.log('Hahaha i am maning in the middle');
-        e.respondWith(fetch('http://127.0.0.1:8080/hello.txt'));
+        e.respondWith(fetch('http://127.0.0.1:8080/fetch-n-cache/hello.txt'));
     }
-    else if(url == "http://127.0.0.1:8080/sw/version") {
+    else if(url == "http://127.0.0.1:8080/fetch-n-cache/sw/version") {
         console.log('giving version of this SW');
         const response = new Response(version, { status: 200 });
         e.respondWith(response);
     }
-    else if(url == "http://127.0.0.1:8080/sw/caches.keys") {
+    else if(url == "http://127.0.0.1:8080/fetch-n-cache/sw/caches.keys") {
         e.respondWith(new Promise((resolve, reject) => {
             caches.keys().then(keys => {
                 const str = 
@@ -43,7 +43,7 @@ self.addEventListener('fetch', e => {
             });
         }));
     }
-    else if(url == "http://127.0.0.1:8080/img/oya.jpg") {
+    else if(url == "http://127.0.0.1:8080/fetch-n-cache/img/oya.jpg") {
         e.respondWith(new Promise((resolve,reject) => {
             caches.match(e.request)
             .then(r => {
